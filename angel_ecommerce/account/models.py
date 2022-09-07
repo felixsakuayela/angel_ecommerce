@@ -1,5 +1,3 @@
-from turtle import update
-from venv import create
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
