@@ -1,6 +1,6 @@
 # Angel Ecommerce
 
-## Authentication API 
+## Authentication API With JWT
 
 ### Request List
 - Registration User
