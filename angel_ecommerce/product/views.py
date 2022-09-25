@@ -9,21 +9,6 @@ from product.serializers import CategorySerializer
 from product.renderers import ProductRenderer
 from rest_framework.permissions import IsAuthenticated
 
-
-'''class ListCategoryViews(APIView):
-    category_class = CategorySerializer
-
-    def get_queryset(self):
-        category = Category.objects.all()
-        return category
-
-    def get(self, request, *args, **kwargs):
-        category = self.get_queryset()
-        serializer = CategorySerializer(category, many=True)
-
-        return Response(category.data)
-    '''
-
 class ListCategoryViews(APIView):
     renderer_classes = [ProductRenderer]
     def get(self, format=None):
