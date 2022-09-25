@@ -2,9 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.db import models
 from django.urls import reverse
-from account.models import Account
+from account.models import User
 from django.db.models import Avg, Count
-
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50, unique=True)
@@ -81,7 +80,7 @@ class Variation(models.Model):
 
 class ReviewRating(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=100, blank=True)
     review = models.TextField(max_length=500, blank=True)
     rating = models.FloatField()
