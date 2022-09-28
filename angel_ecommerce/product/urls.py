@@ -1,7 +1,7 @@
 from django.urls import path
-from product.views import ListCategoryViews
+from product.views import ListCategoryViews, RegisterCategoryViews
 
 urlpatterns = [
     path('categories/', ListCategoryViews.as_view(), name='categories'),
-    #path('categories/<int:pk>/', DetailCategory.as_view(), name='singlecategory'),
+    path('registration-categories/', RegisterCategoryViews.as_view(), name='registration-categories'),
 ]
