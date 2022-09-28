@@ -5,7 +5,7 @@ from product.models import Category, Product
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from product.serializers import CategorySerializer, CategoryRegistrationSerializer
+from product.serializers import CategorySerializer, CategoryRegistrationSerializer, ProductSerializer, ProductRegistrationSerializer
 from product.renderers import ProductRenderer
 from rest_framework.permissions import IsAuthenticated
 
@@ -20,6 +20,21 @@ class RegisterCategoryViews(APIView):
     #permission_classes = [IsAuthenticated]
     def post(self, request, format=None):
         serializer = CategoryRegistrationSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(status=status.HTTP_200_OK)
+
+class ListProductViews(APIView):
+    renderer_classes = [ProductRenderer]
+    def get(self, format=None):
+        serializer = ProductSerializer(Product.objects.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class RegisterProductViews(APIView):
+    renderer_classes = [ProductRenderer]
+    #permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        serializer = ProductRegistrationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_200_OK)
