@@ -1,6 +1,6 @@
 from django.forms import ImageField
 from rest_framework import serializers
-from product.models import Category, Product  
+from product.models import Category, Product, Variation
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -32,3 +32,19 @@ class ProductRegistrationSerializer(serializers.ModelSerializer):
 
     def create(self, validate_data):
         return Category.objects.created_date(**validate_data)
+
+class VariationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Variation
+        fields = ['product', 'variation_category', 'variation_value', 'is_active', 'created_date']
+
+class VariationRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Variation
+        fields = ['product', 'variation_category', 'variation_value', 'is_active', 'created_date']
+        extra_kwargs = {
+            'created_date': {'read_only': True},
+        }
+
+    def create(self, validate_data):
+        return Variation.objects.created_date(**validate_data)

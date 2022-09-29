@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from rest_framework import generics
 from django.contrib.auth.models import User
-from product.models import Category, Product
+from product.models import Category, Product, Variation
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from product.serializers import CategorySerializer, CategoryRegistrationSerializer, ProductSerializer, ProductRegistrationSerializer
+from product.serializers import CategorySerializer, CategoryRegistrationSerializer, ProductSerializer, ProductRegistrationSerializer, VariationSerializer, VariationRegistrationSerializer
 from product.renderers import ProductRenderer
 from rest_framework.permissions import IsAuthenticated
 
@@ -25,6 +25,14 @@ class ListProductViews(generics.ListAPIView):
 class RegisterProductViews(generics.CreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductRegistrationSerializer
+
+class ListVariationViews(generics.ListAPIView):
+    queryset = Variation.objects.all()
+    serializer_class = VariationSerializer
+
+class RegisterVariationViews(generics.CreateAPIView):
+    queryset = Variation.objects.all()
+    serializer_class = VariationRegistrationSerializer
 
 '''class RegisterCategoryViews(APIView):
     renderer_classes = [ProductRenderer]
