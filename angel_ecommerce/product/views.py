@@ -9,33 +9,62 @@ from product.serializers import CategorySerializer, CategoryRegistrationSerializ
 from product.renderers import ProductRenderer
 from rest_framework.permissions import IsAuthenticated
 
-class ListCategoryViews(APIView):
-    renderer_classes = [ProductRenderer]
-    def get(self, format=None):
-        serializer = CategorySerializer(Category.objects.all(), many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
-class RegisterCategoryViews(APIView):
+
+
+class ListCategoryViews(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class RegisterCategoryViews(generics.CreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategoryRegistrationSerializer
+
+class ListProductViews(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class ListProductViews(generics.CreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+
+
+
+'''class RegisterCategoryViews(APIView):
     renderer_classes = [ProductRenderer]
     #permission_classes = [IsAuthenticated]
     def post(self, request, format=None):
         serializer = CategoryRegistrationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)'''
 
-class ListProductViews(APIView):
+'''class ListProductViews(APIView):
     renderer_classes = [ProductRenderer]
-    def get(self, format=None):
-        serializer = ProductSerializer(Product.objects.all(), many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request, format=None):
+        product = Product.objects.all()
+        serializer = ProductSerializer(product, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)'''
 
-class RegisterProductViews(APIView):
+'''class RegisterProductViews(APIView):
     renderer_classes = [ProductRenderer]
     #permission_classes = [IsAuthenticated]
     def post(self, request, format=None):
         serializer = ProductRegistrationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)'''
+
+
+'''class ...View(APIView):
+
+    def get(self, request, *args, **kwargs):
+
+        queryset = ....objects.all()
+
+        serializer = ...Serializer(queryset, many=True, context={"request":request})
+
+        return Response(serializer.data, status=status.HTTP_200_OK)'''
 

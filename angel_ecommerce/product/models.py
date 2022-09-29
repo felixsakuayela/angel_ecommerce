@@ -9,7 +9,7 @@ class Category(models.Model):
     category_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(max_length=255, blank=True)
-    cat_image = models.ImageField(upload_to='photos/categories', blank=True)
+    cat_image = models.ImageField(upload_to='photos/categories', max_length=255, null=True, blank=True)
 
     class Meta:
         verbose_name = 'category'
@@ -26,7 +26,7 @@ class Product(models.Model):
     slug            = models.SlugField(max_length=200, unique=True)
     description     = models.TextField(max_length=500, blank=True)
     price           = models.IntegerField()
-    images          = models.ImageField(upload_to='photos/products')
+    images          = models.ImageField(upload_to='photos/products', max_length=255, null=True, blank=True)
     stock           = models.IntegerField()
     is_available    = models.BooleanField(default=True)
     category        = models.ForeignKey(Category, on_delete=models.CASCADE)
