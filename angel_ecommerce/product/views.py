@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from rest_framework import generics
 from django.contrib.auth.models import User
-from product.models import Category, Product, Variation
+from product.models import Category, Product, Variation, ReviewRating, ProductGallery
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from product.serializers import CategorySerializer, CategoryRegistrationSerializer, ProductSerializer, ProductRegistrationSerializer, VariationSerializer, VariationRegistrationSerializer
+from product.serializers import CategorySerializer, CategoryRegistrationSerializer, ProductSerializer, ProductRegistrationSerializer
+from product.serializers import VariationSerializer, VariationRegistrationSerializer, ReviewRatingSerializer, ReviewRatingRegistrationSerializer
+from product.serializers import ProductGallerySerializer, ProductGalleryRegistrationSerializer
 from product.renderers import ProductRenderer
 from rest_framework.permissions import IsAuthenticated
 
@@ -33,6 +35,22 @@ class ListVariationViews(generics.ListAPIView):
 class RegisterVariationViews(generics.CreateAPIView):
     queryset = Variation.objects.all()
     serializer_class = VariationRegistrationSerializer
+
+class ListReviewRatingViews(generics.ListAPIView):
+    queryset = ReviewRating.objects.all()
+    serializer_class = ReviewRatingSerializer
+
+class RegisterReviewRatingViews(generics.CreateAPIView):
+    queryset = ReviewRating.objects.all()
+    serializer_class = ReviewRatingRegistrationSerializer
+
+class ListProductGalleryViews(generics.ListAPIView):
+    queryset = ProductGallery.objects.all()
+    serializer_class = ProductGallerySerializer
+
+class RegisterProductGalleryViews(generics.CreateAPIView):
+    queryset = ProductGallery.objects.all()
+    serializer_class = ProductGalleryRegistrationSerializer
 
 '''class RegisterCategoryViews(APIView):
     renderer_classes = [ProductRenderer]
