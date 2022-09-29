@@ -10,8 +10,6 @@ from product.renderers import ProductRenderer
 from rest_framework.permissions import IsAuthenticated
 
 
-
-
 class ListCategoryViews(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -24,13 +22,9 @@ class ListProductViews(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ListProductViews(generics.CreateAPIView):
+class RegisterProductViews(generics.CreateAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-
-
-
+    serializer_class = ProductRegistrationSerializer
 
 '''class RegisterCategoryViews(APIView):
     renderer_classes = [ProductRenderer]
