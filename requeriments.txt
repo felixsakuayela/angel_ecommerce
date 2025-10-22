@@ -4,7 +4,7 @@ bs4==0.0.1
 certifi==2020.12.5
 chardet==4.0.0
 distlib==0.3.4
-Django==3.1.7
+Django==4.2.21
 django-admin-honeypot==1.1.0
 django-admin-thumbnails==0.2.5
 django-adminlte3==0.1.6
