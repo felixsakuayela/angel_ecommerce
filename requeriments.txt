@@ -11,7 +11,7 @@ django-adminlte3==0.1.6
 django-dotenv==1.4.2
 django-session-timeout==0.1.0
 djangorestframework==3.13.1
-filelock==3.6.0
+filelock==3.20.1
 idna==2.10
 importlib-metadata==4.11.3
 lxml==4.9.0
